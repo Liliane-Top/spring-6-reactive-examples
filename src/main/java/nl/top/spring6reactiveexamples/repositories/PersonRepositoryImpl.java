@@ -12,8 +12,9 @@ public class PersonRepositoryImpl implements PersonRepository {
     Person robert = Person.builder().id(4).firstName("Robert").lastName("van Leeuwen").build();
 
     @Override
-    public Mono<Person> getById(Integer id) {
-        return Mono.just(liane);
+    public Mono<Person> getById(final Integer id) {
+        return findAll().filter(person -> person.getId().equals(id)).next();
+
     }
 
     @Override
